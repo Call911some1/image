@@ -6,10 +6,7 @@ from skimage import io
 uploaded_file = st.file_uploader("Загрузите изображение", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
-    image = io.imread(uploaded_file)
-
-    if len(image.shape) == 3:
-        image = image[:, :, 0]  # Преобразуем в черно-белое изображение, взяв один цветовой канал
+    image = io.imread(uploaded_file)[:, :, 0]
 
     st.image(image, caption='Исходное изображение', use_column_width=True)
 
@@ -25,4 +22,3 @@ if uploaded_file is not None:
     recon_img = recon_img / np.max(recon_img)
 
     st.image(recon_img, caption=f'Восстановленное изображение с {k} сингулярными значениями', use_column_width=True)
-
