@@ -13,7 +13,8 @@ if uploaded_file is not None:
 
     st.image(image, caption='Исходное изображение', use_column_width=True)
 
-    k = st.slider('Выбери число сингулярных значений', 1, min(image.shape), value=50)
+    k = st.text_input('Введите число для сжатия вашей картинки', value="50")
+    k = int(k)
     U, sing_values, V = np.linalg.svd(image)
     U_k = U[:, :k]
     sigma_k = np.diag(sing_values[:k])
